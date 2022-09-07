@@ -90,6 +90,78 @@ app.get("/checkVaccinationStatus",function(req,res){
 
 })
 
+app.get("/getCertificate",function(req,res){
+  let statusOfAdhar=false;
+  let certificate;
+  //
+  let adharId=parseInt(req.query.adharId);
+  let certificates=[{
+    adhar:101,
+    certificate:"Vaccinated",
+    isVaccinated:true
+  },
+  {
+    adhar:102,
+    certificate:"Not Vaccinated",
+    isVaccinated:false
+  },
+  {
+    adhar:103,
+    certificate:"Vaccinated",
+    isVaccinated:true
+  },
+  {
+    adhar:104,
+    certificate:"Not Vaccinated",
+    isVaccinated:false
+  }
+
+
+
+  ]
+
+  if(adharId)
+  {
+      for(let i=0;i<status.length;i++){
+      if(certificates[i].adhar==adharId)
+      {
+        certificate=certificates[i].certificate;
+        statusOfAdhar=certificates[i].isVaccinated;
+      }
+    
+    
+    }
+
+    if(statusOfAdhar){
+      res.json({
+        message:"Success",
+         certificate:statusOfAdhar
+    
+    })
+    }
+    else{
+      res.json({
+        message:"Failed,Sorry Not vaccinated",
+       
+    
+    })
+    }
+    
+   
+      
+  }
+  else{
+      res.json({
+          message:"Failed,Adhar Id Required",
+          
+      
+      })
+  }
+
+
+
+})
+
 app.use(ErrorMiddleware)
 
 app.listen(8080,function(){

@@ -20,12 +20,25 @@
       <h1>Home page</h1>
     </main>
 
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
 
-fetch('http://139.59.8.250:8080/getAdharAndNames')
-  .then((response) => response.json())
-  .then((data) => console.log(data));
+        function apicall(url,cb){
+            $.ajax({
+                url:url,
+                method:"GET",
+                success:function(result){
+                    cb(null,result)
+
+                },error:function(error){
+                    cb(error,null)
+                }
+            })
+
+        }
+
+
+
 
 
     </script>
