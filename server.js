@@ -135,7 +135,7 @@ app.get("/getCertificate",function(req,res){
     if(statusOfAdhar){
       res.json({
         message:"Success",
-         certificate:statusOfAdhar
+         certificate:certificate
     
     })
     }
