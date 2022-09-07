@@ -1,8 +1,10 @@
 const express=require("express");
 const app=express();
 const path=require("path");
+const cors=require("cors");
 const ErrorMiddleware = require("./middlewares/commonErrorHandler");
 
+app.use(cors());
 let adharData=[{
     name:"Rajkumar",
     adhar:101
