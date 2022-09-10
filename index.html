@@ -49,6 +49,7 @@
     <h1 id="status"></h1>
 
     <div class="loader" id="loader"></div>
+    <input type="text" id="input">
     <button id="button">
 
       Click Me
@@ -167,8 +168,8 @@ fetch('http://139.59.8.250:8080/checkVaccinationStatus?adharId='+data).then(data
 })
 */
 //await fetch("http://139.59.8.250:8080/getAdharAndNames");
-async function callApi(){
-const name="Girish";
+async function callApi(name){
+//const name="Girish";
 try {
   const data1=await fetch("http://139.59.8.250:8080/getAdharAndNames");
   const result=await data1.json();
@@ -185,6 +186,8 @@ for(let i=0;i<data.length;i++){
   const data2=await fetch('http://139.59.8.250:8080/checkVaccinationStatus?adharId='+adharId);
   const result2=await data2.json();
   console.log("Final await result",result2)
+
+  // dispaly the data
   
 } catch (error) {
   
@@ -194,8 +197,35 @@ for(let i=0;i<data.length;i++){
 
 }
 
-callApi();
 
+const button=document.getElementById("button");
+button.addEventListener("click",function(){
+  const name=document.getElementById("input").value;
+  callApi(name);
+
+  //
+
+
+
+})
+
+
+// Creating fustom fetch // use the below function
+function apicall2(url,cb){
+
+// Doesnt required to be rememberd //non essential
+  $.ajax({
+      url:url,
+      method:"GET",
+      success:function(result){
+          cb(null,result)
+
+      },error:function(error){
+          cb(error,null)
+      }
+  })
+
+}
 
     </script>
   </body>
